@@ -89,11 +89,17 @@
 
      <!-- ios -->
      <platform name="ios">
+         <preference name="CAMERA_USAGE_DESCRIPTION" default=" "/>
+
          <config-file target="config.xml" parent="/*">
              <feature name="Camera">
                  <param name="ios-package" value="CDVCamera" />
              </feature>
              <preference name="CameraUsesGeolocation" value="false" />
+         </config-file>
+
+         <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+             <string>$CAMERA_USAGE_DESCRIPTION</string>
          </config-file>
 
          <js-module src="www/ios/CameraPopoverHandle.js" name="CameraPopoverHandle">
@@ -154,12 +160,12 @@
         <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
             <clobbers target="CameraPopoverHandle" />
         </js-module>
-        
+
         <header-file src="src/osx/CDVCamera.h" />
         <source-file src="src/osx/CDVCamera.m" />
-                
+
         <framework src="Quartz.framework" />
         <framework src="AppKit.framework" />
     </platform>
-    
+
 </plugin>
